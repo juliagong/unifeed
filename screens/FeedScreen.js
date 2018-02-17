@@ -12,7 +12,7 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
-
+import { EventCard } from '../components/EventCard.js';
 
 
 export default class MyFeed extends React.Component {
@@ -33,6 +33,10 @@ export default class MyFeed extends React.Component {
             onPress={() => this.props.navigation.navigate('MyEvents')}
             title="Go to my events"
           />
+
+        </View>
+        <View>
+          <EventCard title="Hall Meeting" />
         </View>
       </ScrollView>
     );
