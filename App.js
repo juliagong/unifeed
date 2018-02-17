@@ -1,35 +1,34 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, Button, Text, ScrollView } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
+import { DrawerNavigator } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 
-export default class App extends React.Component {
-  state = {
-    isLoadingComplete: false,
+class MyFeed extends React.Component {
+  static navigationOptions = {
+    drawerLabel: 'My Feed',
   };
 
   render() {
-    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
-      return (
-        <AppLoading
-          startAsync={this._loadResourcesAsync}
-          onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
-        />
-      );
-    } else {
-      return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-          <RootNavigation />
+    return (
+      <ScrollView>
+        <View style={{ flex : 1, paddingTop: '20%'}}>
+          <Text style={{textAlign: 'center'}}>Welcome to unifeed!</Text>
         </View>
-      );
-    }
-  }
 
-  _loadResourcesAsync = async () => {
+        <View style={{ flex : 1, paddingTop: '50%'}}>
+          <Button
+            onPress={() => this.props.navigation.navigate('EventsScreen')}
+            title="Go to my events"
+          />
+        </View>
+      </ScrollView>
+    );
+  }
+}
+
+/*_loadResourcesAsync = async () => {
     return Promise.all([
       Asset.loadAsync([
         require('./assets/images/robot-dev.png'),
@@ -43,17 +42,35 @@ export default class App extends React.Component {
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
       }),
     ]);
+  };*/
+
+class MyEvents extends React.Component {
+  static navigationOptions = {
+    drawerLabel: 'My Events',
   };
 
-  _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
-    console.warn(error);
-  };
+  render() {
+    return (
+      <ScrollView>
+        <View style={{ flex : 1, paddingTop: '20%'}}>
+          <Text style={{textAlign: 'center'}}>The following are events you made:</Text>
+        </View>
 
-  _handleFinishLoading = () => {
-    this.setState({ isLoadingComplete: true });
-  };
+        <View style={{ flex : 1, paddingTop: '50%'}}>
+          <Button
+            onPress={() => this.props.navigation.goBack()}
+            title="Go back to feed"
+          />
+        </View>
+      </ScrollView>
+    );
+  }
+}
+
+export default class App extends React.Component {
+  render() {
+    return <MyApp />;
+  }
 }
 
 const styles = StyleSheet.create({
@@ -64,5 +81,18 @@ const styles = StyleSheet.create({
   statusBarUnderlay: {
     height: 24,
     backgroundColor: 'rgba(0,0,0,0.2)',
+  },
+  icon: {
+    width: 24,
+    height: 24,
+  },
+});
+
+const MyApp = DrawerNavigator({
+  FeedScreen: {
+    screen: MyFeed,
+  },
+  EventsScreen: {
+    screen: MyEvents,
   },
 });

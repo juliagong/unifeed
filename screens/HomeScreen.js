@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
@@ -16,6 +17,11 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+
+  state = {initText: 'See Events', name: 'Julia'};
+  pressButton() {
+    this.setState({initText: this.state.initText + 'wa'});
+  }
 
   render() {
     return (
@@ -41,6 +47,13 @@ export default class HomeScreen extends React.Component {
               <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
             </View>
 
+            <Text style={styles.getStartedText}> {this.state.initText} </Text>
+
+            <Button
+              onPress={() => this.pressButton()}
+              title="Press Me!"
+            />
+
             <Text style={styles.getStartedText}>
               Change this text and your app will automatically reload.
             </Text>
@@ -54,7 +67,7 @@ export default class HomeScreen extends React.Component {
         </ScrollView>
 
         <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
+          <Text style={styles.tabBarInfoText}>This is a tab bar??? You can edit it in:</Text>
 
           <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
