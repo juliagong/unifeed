@@ -13,6 +13,35 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
+
+
+export default class MyFeed extends React.Component {
+  static navigationOptions = {
+    title: 'My Feed',
+    drawerLabel: 'My Feed',
+  };
+
+  render() {
+    return (
+      <ScrollView>
+        <View style={{ flex : 1, paddingTop: '20%'}}>
+          <Text style={{textAlign: 'center'}}>Welcome to unifeed!</Text>
+        </View>
+
+        <View style={{ flex : 1, paddingTop: '50%'}}>
+          <Button
+            onPress={() => this.props.navigation.navigate('MyEvents')}
+            title="Go to my events"
+          />
+        </View>
+      </ScrollView>
+    );
+  }
+}
+
+
+
+/*
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home',
@@ -111,7 +140,7 @@ export default class HomeScreen extends React.Component {
     );
   };
 }
-
+*/
 const styles = StyleSheet.create({
   container: {
     flex: 1,

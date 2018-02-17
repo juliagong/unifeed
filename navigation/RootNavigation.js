@@ -3,13 +3,18 @@ import React from 'react';
 import { StackNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
+import MainDrawerNavigator from './MainDrawerNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 
 const RootStackNavigator = StackNavigator(
   {
+    // Tabs: {
+    //   screen: MainTabNavigator,
+    // },
     Main: {
-      screen: MainTabNavigator,
-    },
+      screen: MainDrawerNavigator,
+
+    }
   },
   {
     navigationOptions: () => ({

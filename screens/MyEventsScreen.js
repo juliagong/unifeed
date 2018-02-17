@@ -13,6 +13,33 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
+export default class MyEvents extends React.Component {
+  static navigationOptions = {
+    title: 'My Events',
+    drawerLabel: 'My Events',
+  };
+
+  render() {
+    return (
+      <ScrollView style={styles.container}>
+        <View style={{ flex : 1, paddingTop: '20%'}}>
+          <Text style={{textAlign: 'center'}}>The following are events you made:</Text>
+        </View>
+
+        <View style={{ flex : 1, paddingTop: '50%'}}>
+          <Button
+            onPress={() => this.props.navigation.goBack()}
+            title="Go back to feed"
+          />
+        </View>
+      </ScrollView>
+    );
+  }
+}
+
+
+
+/*
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home',
@@ -111,7 +138,7 @@ export default class HomeScreen extends React.Component {
     );
   };
 }
-
+*/
 const styles = StyleSheet.create({
   container: {
     flex: 1,
