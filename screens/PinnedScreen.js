@@ -48,13 +48,15 @@ export default class PinnedScreen extends React.Component {
   });
 
   renderEvent(ev, index) {
-    let {title, desc} = ev;
+    let {title, desc, loc, time} = ev;
 
     return (
       <View key={index}>
         <EventCard
           title={title}
           desc={desc}
+          loc={loc}
+          time={time}
         />
 
       </View>

@@ -18,19 +18,27 @@ import { EventCard } from '../components/EventCard.js';
 const EVENTS = [
   {
     title: "Hall Meeting",
-    desc: "Let's talk and eat!"
+    desc: "Let's talk and eat!",
+    loc: "S2",
+    time:"9:30pm"
   },
   {
-    title: "Frosofeast",
-    desc: "Julia is super awesome! Come eat her home-catered Chinese Meal!"
+    title: "Frosofeast!",
+    desc: "Julia is super awesome! Come eat her home-catered Chinese Meal!",
+    loc: "Schiff Lounge",
+    time:"5:30pm"
   },
   {
     title: "Hall Meeting",
-    desc: "Let's talk and eat!"
+    desc: "Let's talk and eat!",
+    loc: "S2",
+    time:"9:30pm"
   },
   {
     title: "FrosoDumplings",
-    desc: "Happy Lunar New Year!"
+    desc: "Happy Lunar New Year!",
+    loc: "Adams Lounge",
+    time:"10:30pm"
   },
 ];
 
@@ -48,13 +56,15 @@ export default class MyFeed extends React.Component {
   });
 
   renderEvent(ev, index) {
-    let {title, desc} = ev;
+    let {title, desc, loc, time} = ev;
 
     return (
       <View key={index}>
         <EventCard
           title={title}
           desc={desc}
+          loc={loc}
+          time={time}
         />
 
       </View>
