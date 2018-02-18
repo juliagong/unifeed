@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Platform, View } from 'react-native';
+import { Platform, View, ScrollView, StyleSheet, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { DrawerNavigator } from 'react-navigation';
+import { DrawerNavigator, NavigationActions } from 'react-navigation';
 
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import FeedScreen from '../screens/FeedScreen';
 import MyEventsScreen from '../screens/MyEventsScreen';
-import { ScrollView, StyleSheet, Text } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import PinnedScreen from '../screens/PinnedScreen';
 
 class SideMenu extends React.Component {
   state = {
@@ -138,6 +137,9 @@ export default DrawerNavigator(
     MyEvents: {
       screen: MyEventsScreen,
     },
+    PinnedScreen: {
+      screen: PinnedScreen,
+    }
   },
   {
     contentComponent: SideMenu,
