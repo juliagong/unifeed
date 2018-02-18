@@ -4,7 +4,7 @@ import { Text,
          ScrollView,
          StyleSheet,
          Dimensions } from 'react-native';
-import { Card, Tile, Button, ButtonGroup } from 'react-native-elements'
+import { Card, Tile, Button, ButtonGroup } from 'react-native-elements';
 import Expo from 'expo';
 
 export class EventCard extends React.Component {
