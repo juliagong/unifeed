@@ -68,6 +68,7 @@ export default class App extends React.Component {
       );
     } else {
       FirebaseHelper.firebaseInit();
+      FirebaseHelper.writeData("Julia");
       return (
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}

@@ -12,6 +12,8 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
+import FirebaseHelper from '../firebase_config/FirebaseHelper'
+
 
 export default class MyEvents extends React.Component {
   static navigationOptions =({navigation})=> ({
@@ -26,13 +28,27 @@ export default class MyEvents extends React.Component {
         drawerLabel: 'My Events',
   });
 
+  state = {
+    title: 'have not read',
+  };
+
+  readTitle = async () => {
+    let title = await FirebaseHelper.readData();
+    console.warn(title)
+    this.setState({ title });
+  };
+
   render() {
     return (
+
       <ScrollView style={styles.container}>
         <View style={{ flex : 1, paddingTop: '20%'}}>
           <Text style={{textAlign: 'center'}}>The following are events you made:</Text>
         </View>
-
+        <View>
+          <Text> {this.state.title} </Text>
+          <Button onPress={this.readTitle} title="Read DB" />
+        </View>
         <View style={{ flex : 1, paddingTop: '50%'}}>
           <Button
             onPress={() => this.props.navigation.goBack()}

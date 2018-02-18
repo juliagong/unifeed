@@ -20,4 +20,19 @@ export default class FirebaseHelper {
       console.log('App reloaded, so firebase did not re-initialize');
     }
   }
+
+  static writeData(event_title) {
+    firebase.database().ref('events').set({
+      title: event_title,
+    });
+    console.log(event_title + " is in the base");
+  }
+
+  static readData = async () => {
+    const snapshot = await firebase.database().ref('events').once('value');
+      let evtitle = snapshot.val().title;
+      console.warn("Title is: ", evtitle);
+    // console.warn("We found " + title + "!");
+    return evtitle;
+  }
 }
