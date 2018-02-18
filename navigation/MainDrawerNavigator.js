@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Platform, View, ScrollView, StyleSheet, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { DrawerNavigator, NavigationActions } from 'react-navigation';
+import { setCustomText } from 'react-native-global-props';
 
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
@@ -58,6 +59,7 @@ class SideMenu extends React.Component {
   // )
 
   render () {
+    setCustomText(customTextProps);
     return (
       <View style={sideMenuStyles.container}>
         <ScrollView>
@@ -127,6 +129,12 @@ const sideMenuStyles = StyleSheet.create({
     backgroundColor: '#202328',
   },
 });
+
+const customTextProps = {
+  style: {
+    fontFamily: 'avenir',
+  }
+}
 
 export default DrawerNavigator(
   {
