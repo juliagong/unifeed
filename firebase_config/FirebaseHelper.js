@@ -21,18 +21,26 @@ export default class FirebaseHelper {
     }
   }
 
-  static writeData(event_title) {
-    firebase.database().ref('events').set({
-      title: event_title,
-    });
-    console.log(event_title + " is in the base");
+  static writeData(newEvent) {
+    let newEventKey = firebase.database().ref().child('events').push().key;
+
+    let updates = {};
+    updates['/events/' + newEventKey] = newEvent;
+
+    console.log(newEvent.title, " is in the base");
+
+    return firebase.database().ref().update(updates);
+
+    // firebase.database().ref('events').set({
+    //   title: event_title,
+    // });
   }
 
   static readData = async () => {
-    const snapshot = await firebase.database().ref('events').once('value');
-      let evtitle = snapshot.val().title;
-      console.warn("Title is: ", evtitle);
+    const snapshot = await firebase.database().ref().once('value');
+      let events = snapshot.val();
+      // console.warn("Title is: ", evtitle);
     // console.warn("We found " + title + "!");
-    return evtitle;
+    return events;
   }
 }

@@ -11,40 +11,41 @@ import {
   Button,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import { FirebaseHelper} from '../firebase_config/FirebaseHelper';
 
 import { MonoText } from '../components/StyledText';
 import { EventCard } from '../components/EventCard.js';
 
-const EVENTS = [
-  {
-    title: "Hall Meeting",
-    desc: "Let's talk and eat!",
-    loc: "S2",
-    time: "9:30pm",
-    tags: ["S2","Food","Donuts"],
-  },
-  {
-    title: "Frosofeast!",
-    desc: "Julia is super awesome! Come eat her home-catered Chinese Meal!",
-    loc: "Schiff Lounge",
-    time:"5:30pm",
-    tags: ["Food","Company"]
-  },
-  {
-    title: "Hall Meeting",
-    desc: "Let's talk and eat!",
-    loc: "S2",
-    time:"9:30pm",
-    tags: ["S2","Food","Donuts"]
-  },
-  {
-    title: "FrosoDumplings",
-    desc: "Happy Lunar New Year!",
-    loc: "Adams Lounge",
-    time:"10:30pm",
-    tags: ["Food","Company","Dumplings"]
-  },
-];
+let EVENTS = {};//[
+  // {
+  //   title: "Hall Meeting",
+  //   desc: "Let's talk and eat!",
+  //   loc: "S2",
+  //   time: "9:30pm",
+  //   tags: ["S2","Food","Donuts"],
+  // },
+  // {
+  //   title: "Frosofeast!",
+  //   desc: "Julia is super awesome! Come eat her home-catered Chinese Meal!",
+  //   loc: "Schiff Lounge",
+  //   time:"5:30pm",
+  //   tags: ["Food","Company"]
+  // },
+  // {
+  //   title: "Hall Meeting",
+  //   desc: "Let's talk and eat!",
+  //   loc: "S2",
+  //   time:"9:30pm",
+  //   tags: ["S2","Food","Donuts"]
+  // },
+  // {
+  //   title: "FrosoDumplings",
+  //   desc: "Happy Lunar New Year!",
+  //   loc: "Adams Lounge",
+  //   time:"10:30pm",
+  //   tags: ["Food","Company","Dumplings"]
+  // },
+//];
 
 export default class MyFeed extends React.Component {
   static navigationOptions =({navigation})=> ({
@@ -58,6 +59,10 @@ export default class MyFeed extends React.Component {
         title: 'My Feed',
         drawerLabel: 'My Feed',
   });
+
+  componentWillMount = async () => {
+    EVENTS = await FirebaseHelper.readData();
+  }
 
   renderEvent(ev, index) {
     let {title, desc, loc, time, tags} = ev;
@@ -77,10 +82,9 @@ export default class MyFeed extends React.Component {
   }
 
   renderEventList() {
-    return _.map(EVENTS, (ev, index) => {
+    return _.map(EVENTS, (ev[0], index) => {
       return this.renderEvent(ev, index);
     });
-
   }
 
   render() {
