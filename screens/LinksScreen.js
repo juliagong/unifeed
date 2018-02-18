@@ -1,12 +1,19 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
 export default class LinksScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Links',
-    drawerLabel: 'Links',
-  };
+  static navigationOptions =({navigation})=> ({
+        headerLeft:(
+            <View style={{marginLeft:10}}>
+             <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+                <Text style={{fontSize:17}}>Menu</Text>
+            </TouchableOpacity>
+          </View>
+        ),
+        title: 'Links',
+        drawerLabel: 'Links',
+  });
 
   render() {
     return (

@@ -14,10 +14,28 @@ import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home',
-    drawerLabel: 'Home',
-  };
+  static navigationOptions =({navigation})=> ({
+        headerLeft:(
+            <View style={{marginLeft:10}}>
+             <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+                <Text style={{fontSize:17}}>Menu</Text>
+            </TouchableOpacity>
+          </View>
+        ),
+        title: 'Home',
+        drawerLabel: 'Home',
+  });
+  // static navigationOptions = {
+  //   title: 'Home',
+  //   drawerLabel: 'Home',
+  //   headerRight: ({ navigate }) => ({
+  //         right: (
+  //           <TouchableOpacity onPress={() => {navigate('PinnedScreen')} } >
+  //             <Text> Menu </Text>
+  //           </TouchableOpacity>
+  //         ),
+  //   }),
+  // };
 
   state = {initText: 'See Events', name: 'Julia'};
   pressButton() {

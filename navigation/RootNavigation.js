@@ -1,6 +1,8 @@
 import { Notifications } from 'expo';
 import React from 'react';
+import { View } from 'react-native'
 import { StackNavigator } from 'react-navigation';
+import NavigationBar from 'react-native-navbar';
 
 import MainTabNavigator from './MainTabNavigator';
 import MainDrawerNavigator from './MainDrawerNavigator';
@@ -34,8 +36,14 @@ export default class RootNavigator extends React.Component {
     this._notificationSubscription && this._notificationSubscription.remove();
   }
 
+
   render() {
-    return <RootStackNavigator />;
+    return (
+      //<View>
+        //<NavigationBar title={titleConfig} leftButton={leftButtonConfig} />
+        <RootStackNavigator />
+      //</View>
+    );
   }
 
   _registerForPushNotifications() {
@@ -53,3 +61,12 @@ export default class RootNavigator extends React.Component {
     console.log(`Push notification ${origin} with data: ${JSON.stringify(data)}`);
   };
 }
+
+const leftButtonConfig = {
+  title: 'Next',
+  handler: () => alert('hello!'),
+};
+
+const titleConfig = {
+  title: 'UNIFEED',
+};

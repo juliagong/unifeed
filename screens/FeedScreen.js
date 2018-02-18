@@ -24,13 +24,28 @@ const EVENTS = [
     title: "Frosofeast",
     desc: "Julia is super awesome! Come eat her home-catered Chinese Meal!"
   },
+  {
+    title: "Hall Meeting",
+    desc: "Let's talk and eat!"
+  },
+  {
+    title: "FrosoDumplings",
+    desc: "Happy Lunar New Year!"
+  },
 ];
 
 export default class MyFeed extends React.Component {
-  static navigationOptions = {
-    title: 'My Feed',
-    drawerLabel: 'My Feed',
-  };
+  static navigationOptions =({navigation})=> ({
+        headerLeft:(
+            <View style={{marginLeft:10}}>
+             <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+                <Text style={{fontSize:17}}>Menu</Text>
+            </TouchableOpacity>
+          </View>
+        ),
+        title: 'My Feed',
+        drawerLabel: 'My Feed',
+  });
 
   renderEvent(ev, index) {
     let {title, desc} = ev;
@@ -39,7 +54,7 @@ export default class MyFeed extends React.Component {
       <View key={index}>
         <EventCard
           title={title}
-          description={desc}
+          desc={desc}
         />
 
       </View>
@@ -60,7 +75,7 @@ export default class MyFeed extends React.Component {
           <Text style={{textAlign: 'center'}}>Welcome to unifeed!</Text>
         </View>
 
-        <View style={{ flex : 1, paddingTop: '50%'}}>
+        <View style={{ flex : 1, paddingTop: '30%'}}>
           <Button
             onPress={() => this.props.navigation.navigate('MyEvents')}
             title="Go to my events"
