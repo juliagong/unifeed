@@ -4,7 +4,7 @@ import { AppLoading, Asset, Font } from 'expo';
 import { DrawerNavigator } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
-
+import FirebaseHelper from './firebase_config/FirebaseHelper'
 /*_loadResourcesAsync = async () => {
     return Promise.all([
       Asset.loadAsync([
@@ -67,6 +67,7 @@ export default class App extends React.Component {
         />
       );
     } else {
+      FirebaseHelper.firebaseInit();
       return (
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}

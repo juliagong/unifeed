@@ -10,11 +10,12 @@ const firebaseConfiguration = {
   messagingSenderId: "32605102054"
 };
 
-class FirebaseHelper {
+export default class FirebaseHelper {
 
   static firebaseInit() {
     try {
       firebase.initializeApp(firebaseConfiguration);
+      console.log("We've initialized the firebase! (All your firebase belong to us)");
     } catch (e) {
       console.log('App reloaded, so firebase did not re-initialize');
     }
