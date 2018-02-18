@@ -15,34 +15,26 @@ import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 import { EventCard } from '../components/EventCard.js';
 
-const EVENTS = [
-  {
-    title: "Hall Meeting",
-    desc: "Let's talk and eat!",
-    loc: "S2",
-    time:"9:30pm"
-  },
-  {
-    title: "Frosofeast!",
-    desc: "Julia is super awesome! Come eat her home-catered Chinese Meal!",
-    loc: "Schiff Lounge",
-    time:"5:30pm"
-  },
-  {
-    title: "Hall Meeting",
-    desc: "Let's talk and eat!",
-    loc: "S2",
-    time:"9:30pm"
-  },
-  {
-    title: "FrosoDumplings",
-    desc: "Happy Lunar New Year!",
-    loc: "Adams Lounge",
-    time:"10:30pm"
-  },
+let PinnedEvents = [
+  // {
+  //   title: "Hall Meeting",
+  //   desc: "Let's talk and eat!"
+  // },
+  // {
+  //   title: "Frosofeast",
+  //   desc: "Julia is super awesome! Come eat her home-catered Chinese Meal!"
+  // },
+  // {
+  //   title: "Hall Meeting",
+  //   desc: "Let's talk and eat!"
+  // },
+  // {
+  //   title: "FrosoDumplings",
+  //   desc: "Happy Lunar New Year!"
+  // },
 ];
 
-export default class MyFeed extends React.Component {
+export default class PinnedScreen extends React.Component {
   static navigationOptions =({navigation})=> ({
         headerLeft:(
             <View style={{marginLeft:10}}>
@@ -51,8 +43,8 @@ export default class MyFeed extends React.Component {
             </TouchableOpacity>
           </View>
         ),
-        title: 'My Feed',
-        drawerLabel: 'My Feed',
+        title: 'Pinned',
+        drawerLabel: 'Pinned',
   });
 
   renderEvent(ev, index) {
@@ -72,9 +64,18 @@ export default class MyFeed extends React.Component {
   }
 
   renderEventList() {
-    return _.map(EVENTS, (ev, index) => {
-      return this.renderEvent(ev, index);
-    });
+    if (PinnedEvents.length > 0) {
+      return _.map(PinnedEvents, (ev, index) => {
+        return this.renderEvent(ev, index);
+      });
+    } else {
+      return (
+        <View>
+          <Text style={{textAlign:'center'}}> You have no pinned events </Text>
+        </View>
+      );
+    }
+
 
   }
 
@@ -82,10 +83,10 @@ export default class MyFeed extends React.Component {
     return (
       <ScrollView>
         <View style={{ flex : 1, paddingTop: '20%'}}>
-          <Text style={{textAlign: 'center'}}>Welcome to unifeed!</Text>
+          <Text style={{textAlign: 'center'}}>Pinned Events!</Text>
         </View>
 
-        <View style={{ flex : 1, paddingTop: '30%'}}>
+        <View style={{ flex : 1, paddingTop: '10%'}}>
           <Button
             onPress={() => this.props.navigation.navigate('MyEvents')}
             title="Go to my events"

@@ -14,10 +14,17 @@ import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
 export default class MyEvents extends React.Component {
-  static navigationOptions = {
-    title: 'My Events',
-    drawerLabel: 'My Events',
-  };
+  static navigationOptions =({navigation})=> ({
+        headerLeft:(
+            <View style={{marginLeft:10}}>
+             <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+                <Text style={{fontSize:17}}>Menu</Text>
+            </TouchableOpacity>
+          </View>
+        ),
+        title: 'My Events',
+        drawerLabel: 'My Events',
+  });
 
   render() {
     return (
