@@ -66,11 +66,19 @@ class SideMenu extends React.Component {
               My Feed
             </Text>
           </View>
+
           <View>
             <Text style={sideMenuStyles.sectionHeadingStyle} onPress={this.navigateToScreen('MyEvents')}>
             My Events
             </Text>
           </View>
+
+          <View>
+            <Text style={sideMenuStyles.sectionHeadingStyle} onPress={this.navigateToScreen('PinnedScreen')}>
+            My Pinned Events
+            </Text>
+          </View>
+
           <View>
             <Text style={sideMenuStyles.sectionHeadingStyle} onPress={this.navigateToScreen('Home')}>
               My Groups
