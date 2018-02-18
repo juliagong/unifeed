@@ -20,25 +20,29 @@ const EVENTS = [
     title: "Hall Meeting",
     desc: "Let's talk and eat!",
     loc: "S2",
-    time:"9:30pm"
+    time: "9:30pm",
+    tags: ["S2","Food","Donuts"],
   },
   {
     title: "Frosofeast!",
     desc: "Julia is super awesome! Come eat her home-catered Chinese Meal!",
     loc: "Schiff Lounge",
-    time:"5:30pm"
+    time:"5:30pm",
+    tags: ["Food","Company"]
   },
   {
     title: "Hall Meeting",
     desc: "Let's talk and eat!",
     loc: "S2",
-    time:"9:30pm"
+    time:"9:30pm",
+    tags: ["S2","Food","Donuts"]
   },
   {
     title: "FrosoDumplings",
     desc: "Happy Lunar New Year!",
     loc: "Adams Lounge",
-    time:"10:30pm"
+    time:"10:30pm",
+    tags: ["Food","Company","Dumplings"]
   },
 ];
 
@@ -56,7 +60,7 @@ export default class MyFeed extends React.Component {
   });
 
   renderEvent(ev, index) {
-    let {title, desc, loc, time} = ev;
+    let {title, desc, loc, time, tags} = ev;
 
     return (
       <View key={index}>
@@ -65,6 +69,7 @@ export default class MyFeed extends React.Component {
           desc={desc}
           loc={loc}
           time={time}
+          tags={tags}
         />
 
       </View>
@@ -80,17 +85,10 @@ export default class MyFeed extends React.Component {
 
   render() {
     return (
-      <ScrollView>
-        <View style={{ flex : 1, paddingTop: '20%'}}>
-          <Text style={{textAlign: 'center'}}>Welcome to unifeed!</Text>
-        </View>
-
-        <View style={{ flex : 1, paddingTop: '30%'}}>
-          <Button
-            onPress={() => this.props.navigation.navigate('MyEvents')}
-            title="Go to my events"
-          />
-
+      <ScrollView style={{ backgroundColor: "#101010"}}>
+        <View style={{ flex : 1, paddingTop: 20}}>
+          <Text style={{textAlign: 'center', fontSize: 36,
+              color: 'white', fontFamily: 'AvenirNext-Bold'}}>unifeed</Text>
         </View>
         {this.renderEventList()}
       </ScrollView>

@@ -4,10 +4,23 @@ import { Text,
          ScrollView,
          StyleSheet,
          Dimensions } from 'react-native';
-import { Card, Tile, Button, ButtonGroup, Divider } from 'react-native-elements'
+import { Card, Button, ButtonGroup, Divider } from 'react-native-elements'
 import Expo from 'expo';
 
 export class EventCard extends React.Component {
+  tagList() {
+    const tags = this.props.tags.map((tag) =>
+      <Button
+        key={tag}
+        title={tag}
+        titleStyle={styles.tagTitle}
+        buttonStyle={styles.tagButton}
+        containerStyle={styles.tagContainer} />
+    );
+
+    return tags;
+  }
+
   render() {
     return (
       <Card title={this.props.title}
@@ -23,7 +36,7 @@ export class EventCard extends React.Component {
             </View>
         <View style={styles.buttons}>
           <Button
-            title = "Pin"
+            title="Pin"
             titleStyle={styles.buttonTitle}
             buttonStyle={styles.button1}
           />
@@ -45,24 +58,7 @@ export class EventCard extends React.Component {
         </ScrollView>
         <View style={{flexDirection: 'row', marginTop: 20}}>
           <ScrollView horizontal={true} style={{marginRight: 20}}>
-              <Button
-                title="s2"
-                titleStyle={styles.tagTitle}
-                buttonStyle={styles.tagButton}
-                containerStyle={styles.tagContainer}
-              />
-              <Button
-                title="food"
-                titleStyle={styles.tagTitle}
-                buttonStyle={styles.tagButton}
-                containerStyle={styles.tagContainer}
-              />
-              <Button
-                title="donuts"
-                titleStyle={styles.tagTitle}
-                buttonStyle={styles.tagButton}
-                containerStyle={styles.tagContainer}
-              />
+            {this.tagList()}
           </ScrollView>
           <View style={{ alignItems: 'flex-end' }}>
             <Text style={styles.author}>"Stephone"</Text>
